@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Istok+Web:400,400i,700,700i" rel="stylesheet">
+	<script src="https://fb.me/react-15.0.0.js"></script>
+	<script src="https://fb.me/react-dom-15.0.0.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+	<style type="text/css">
+		body {
+			font-family: 'Istok Web', sans-serif;
+			color: #303541;
+		}
+		.card-img-top{
+        	height: 200px;
+        	background-size: cover;
+    		background-repeat: no-repeat;
+        }
+        .navbar{
+        	color: #303541;
+        	background-color: #7789BA;
+        }
+        .nav-link{
+        	color: #303541;
+        }
+	</style>
+	<title>Task 2</title>
+</head>
+<body>
+	<header id="headerElement" class="header"></header>
+	<div class="container mt-3 mb-3" id='cover'></div>
+	<div class="container mt-3 mb-3" id='gallery'></div>
+	<footer id="footerElement" class="footer mt-3"></footer>
+	<script type="text/babel">
+		function Header(props) {
+	        return (
+						<nav className="navbar navbar-expand-lg">
+							<ul className="navbar-nav">
+								<li className="nav-item active"><a className="nav-link" href="#">{props.menu_1}</a></li>
+								<li className="nav-item"><a className="nav-link" href="#">{props.menu_2}</a></li>
+								<li className="nav-item"><a className="nav-link" href="#">{props.menu_3}</a></li>
+								<li className="nav-item"><a className="nav-link" href="#">{props.menu_4}</a></li>
+							</ul>
+						</nav>
+	        );
+	    }
+		const headerElement = document.getElementById("headerElement");
+
+	    ReactDOM.render(<div className='container'>
+	            <Header menu_1="Main" menu_2="Gallery" menu_3="About" menu_4="Contacts"/>            
+	        </div>, headerElement);
+
+	    function Cover(props){
+	    return(
+			<div>
+				<h3 className="text-center">{props.title}</h3>
+				<p>{props.text}</p>
+			</div>
+	    );
+	}
+
+		const cover = document.getElementById("cover");
+		ReactDOM.render(
+				<Cover title="Николай Рерих" text="Художник, сценограф, философ, писатель, путешественник, археолог, общественный деятель — список амплуа Николая Рериха бесконечен. Он составил первое международное соглашение о защите культурных ценностей и создал философское учение «Живая этика», возродил старинные русские ремесла и оформил театральные представления на Русских сезонах Сергея Дягилева. Картины Николая Рериха хранятся в Русском музее, Третьяковской галерее, Музее искусства народов Востока и частных коллекциях по всему миру." />, cover 
+		);
+
+	    function Picture(props) {
+        return (
+        	<div className="col-4 d-flex flex-fill">
+	            <div className="card">
+	            	<img className="card-img-top" src={props.img} />
+	            	<div className="card-body">
+		                <h5 className="card-title">{props.name}</h5>
+		                <p className="card-text">Year: {props.year}</p>
+	            	</div>
+	            </div>
+	        </div>
+        );
+    }
+
+    const container = document.getElementById("gallery");
+
+    ReactDOM.render(<div className='row mt-3 mb-3'>
+            <Picture name="Небесный бой" img="img/sky.jpg" year="1912"/>
+            <Picture name="Будда победитель" img="img/budda.jpg" year="1925"/>
+            <Picture name="Сжигание тьмы" img="img/burn.jpg" year="1924"/>
+        </div>, gallery);
+
+	    function Footer(props) {
+	    	return(
+					<div>{props.content}</div>
+	    	);
+	}
+		const footerElement = document.getElementById("footerElement");
+
+		ReactDOM.render(<div className='container'>
+			<Footer content="Copyright (c). Все права защищены"/>
+		</div>, footerElement);
+
+	</script>
+</body>
+</html>
